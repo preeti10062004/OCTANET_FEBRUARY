@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly To-Do List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url(https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg);
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: #1c1a1a;
+    border-width: 10px;
+    border-color: #1c1a1a;
+  }
+
+  .container {
+    max-width: 90vw; /* Changed to occupy 90% of screen width */
+    margin: 20px auto;
+    background-color: #f4f0f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Changed to 7 columns for each day */
+    grid-gap: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    grid-column: 1 / -1; /* Spanning the whole width */
+    font-style:oblique;
+  }
+
+  .day-container {
+  border: 2px solid #fefefe; /* Add a 1px solid border with color #ccc */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  grid-column: span 1; /* Spanning only one column */
+  }
+
+  .day-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .todo-item {
+    margin-bottom: 10px;
+  }
+
+  .todo-item input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  .todo-item label {
+    display: block;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .todo-item input[type="text"],
+  .todo-item input[type="date"],
+  .todo-item select {
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #333;
+    outline: none;
+    font-size: inherit;
+    width: 100%; /* Make the input box fill the available width */
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+    color: #666;
+  }
+  
+  .add-button {
+    padding: 5px 10px;
+    background-color: hsl(309, 92%, 80%);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Weekly To-Do List</h1>
+  
+  <!-- Day containers for each day of the week -->
+  <div class="day-container">
+    <div class="day-label">Sunday</div>
+    <div class="todo-list" data-day="sunday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+  <!-- Repeat day-container for other days of the week -->
+  <div class="day-container">
+    <div class="day-label">Monday</div>
+    <div class="todo-list" data-day="monday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="day-container">
+    <div class="day-label">Tuesday</div>
+    <div class="todo-list" data-day="tuesday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="day-container">
+    <div class="day-label">Wednesday</div>
+    <div class="todo-list" data-day="wednesday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="day-container">
+    <div class="day-label">Thursday</div>
+    <div class="todo-list" data-day="thursday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="day-container">
+    <div class="day-label">Friday</div>
+    <div class="todo-list" data-day="friday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="day-container">
+    <div class="day-label">Saturday</div>
+    <div class="todo-list" data-day="saturday">
+      <div class="todo-item">
+        <input type="checkbox">
+        <label><input type="text" placeholder="Task 1"></label>
+        <input type="date" placeholder="Deadline">
+        <select>
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button class="add-button" onclick="addTask(this)">Add</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function addTask(button) {
+    var todoList = button.parentNode.parentNode;
+    var newTaskInput = document.createElement('div');
+    newTaskInput.classList.add('todo-item');
+    newTaskInput.innerHTML = `
+      <input type="checkbox">
+      <label><input type="text" placeholder="New Task"></label>
+      <input type="date" placeholder="Deadline">
+      <select>
+        <option value="low">Low Priority</option>
+        <option value="medium">Medium Priority</option>
+        <option value="high">High Priority</option>
+      </select>
+      <button class="add-button" onclick="addTask(this)">Add</button>
+    `;
+    todoList.appendChild(newTaskInput);
+    
+    // Attach event listener to the newly added checkbox
+    newTaskInput.querySelector('input[type="checkbox"]').addEventListener('change', function() {
+      var label = this.parentNode.querySelector('label');
+      var textInput = label.querySelector('input[type="text"]');
+      if (this.checked) {
+        textInput.classList.add('strikethrough');
+      } else {
+        textInput.classList.remove('strikethrough');
+      }
+    });
+
+    // Reorder tasks based on priority
+    reorderTasks(todoList);
+  }
+
+  function reorderTasks(todoList) {
+    var tasks = Array.from(todoList.getElementsByClassName('todo-item'));
+    tasks.sort(function(a, b) {
+      var priorityOrder = {low: 2, medium: 1, high: 0}; // Changed priority order
+      var priorityA = priorityOrder[a.querySelector('select').value];
+      var priorityB = priorityOrder[b.querySelector('select').value];
+      return priorityA - priorityB;
+    });
+    tasks.forEach(function(task) {
+      todoList.appendChild(task);
+    });
+  }
+
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      var label = this.parentNode.querySelector('label');
+      var textInput = label.querySelector('input[type="text"]');
+      if (this.checked) {
+        textInput.classList.add('strikethrough');
+      } else {
+        textInput.classList.remove('strikethrough');
+      }
+    });
+  });
+</script>
+</body>
+</html>
